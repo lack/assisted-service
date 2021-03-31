@@ -90,6 +90,10 @@ type InstallerConfigBaremetal struct {
 		Mirrors []string `yaml:"mirrors"`
 		Source  string   `yaml:"source"`
 	} `yaml:"imageContentSources,omitempty"`
+	WorkloadSettings []struct {
+		Name   string `yaml:"name"`
+		CPUIds string `yaml:"cpuIDs"`
+	} `yaml:"workloadSettings,omitempty"`
 }
 
 func (c *InstallerConfigBaremetal) Validate() error {
