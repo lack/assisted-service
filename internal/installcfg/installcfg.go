@@ -79,6 +79,12 @@ type InstallerConfigBaremetal struct {
 		Hyperthreading string `yaml:"hyperthreading"`
 		Name           string `yaml:"name"`
 		Replicas       int    `yaml:"replicas"`
+		Workload       *struct {
+			Partitions []struct {
+				Name   string `yaml:"name"`
+				CPUIds string `yaml:"cpuIDs"`
+			} `yaml:"partitions,omitempty"`
+		} `yaml:"workload",omitemoty"`
 	} `yaml:"controlPlane"`
 	Platform              platform         `yaml:"platform"`
 	BootstrapInPlace      bootstrapInPlace `yaml:"bootstrapInPlace,omitempty"`
@@ -90,10 +96,6 @@ type InstallerConfigBaremetal struct {
 		Mirrors []string `yaml:"mirrors"`
 		Source  string   `yaml:"source"`
 	} `yaml:"imageContentSources,omitempty"`
-	WorkloadSettings []struct {
-		Name   string `yaml:"name"`
-		CPUIds string `yaml:"cpuIDs"`
-	} `yaml:"workloadSettings,omitempty"`
 }
 
 func (c *InstallerConfigBaremetal) Validate() error {
